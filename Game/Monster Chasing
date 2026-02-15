@@ -18,7 +18,6 @@ gem = pygame.Rect(random.randint(0, WIDTH-20), random.randint(0, HEIGHT-20), 20,
 monsters = []
 monster_speed = 2
 
-# Score
 score = 0
 font = pygame.font.SysFont(None, 36)
 
@@ -45,7 +44,6 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-    # Movement
     keys = pygame.key.get_pressed()
     if keys[pygame.K_LEFT]:
         player.x -= player_speed
@@ -56,15 +54,12 @@ while running:
     if keys[pygame.K_DOWN]:
         player.y += player_speed
 
-    # Keep player inside screen
     player.clamp_ip(screen.get_rect())
 
-    # Spawn monsters
     if spawn_timer > 90:
         monsters.append(spawn_monster())
         spawn_timer = 0
 
-    # Move monsters toward player
     for monster in monsters:
         if monster.x < player.x:
             monster.x += monster_speed
@@ -75,7 +70,6 @@ while running:
         if monster.y > player.y:
             monster.y -= monster_speed
 
-    # Collision with gem
     if player.colliderect(gem):
         score += 1
         gem.x = random.randint(0, WIDTH-20)
