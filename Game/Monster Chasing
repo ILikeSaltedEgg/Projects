@@ -81,7 +81,6 @@ while running:
             pygame.quit()
             sys.exit()
 
-    # Draw everything
     screen.fill((30, 30, 40))
 
     pygame.draw.rect(screen, (0, 255, 0), player)  # Player
