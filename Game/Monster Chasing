@@ -75,7 +75,6 @@ while running:
         gem.x = random.randint(0, WIDTH-20)
         gem.y = random.randint(0, HEIGHT-20)
 
-    # Collision with monsters
     for monster in monsters:
         if player.colliderect(monster):
             print("Game Over! Final Score:", score)
