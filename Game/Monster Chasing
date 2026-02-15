@@ -1,0 +1,110 @@
+import pygame
+import random
+import sys
+
+pygame.init()
+
+# Screen
+WIDTH, HEIGHT = 800, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Monster Escape")
+
+clock = pygame.time.Clock()
+
+# Player
+player = pygame.Rect(400, 300, 40, 40)
+player_speed = 5
+
+# Gem
+gem = pygame.Rect(random.randint(0, WIDTH-20), random.randint(0, HEIGHT-20), 20, 20)
+
+# Monsters
+monsters = []
+monster_speed = 2
+
+# Score
+score = 0
+font = pygame.font.SysFont(None, 36)
+
+def spawn_monster():
+    side = random.choice(["top", "bottom", "left", "right"])
+    
+    if side == "top":
+        return pygame.Rect(random.randint(0, WIDTH), 0, 40, 40)
+    if side == "bottom":
+        return pygame.Rect(random.randint(0, WIDTH), HEIGHT, 40, 40)
+    if side == "left":
+        return pygame.Rect(0, random.randint(0, HEIGHT), 40, 40)
+    if side == "right":
+        return pygame.Rect(WIDTH, random.randint(0, HEIGHT), 40, 40)
+
+running = True
+spawn_timer = 0
+
+while running:
+    clock.tick(60)
+    spawn_timer += 1
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    # Movement
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_LEFT]:
+        player.x -= player_speed
+    if keys[pygame.K_RIGHT]:
+        player.x += player_speed
+    if keys[pygame.K_UP]:
+        player.y -= player_speed
+    if keys[pygame.K_DOWN]:
+        player.y += player_speed
+
+    # Keep player inside screen
+    player.clamp_ip(screen.get_rect())
+
+    # Spawn monsters
+    if spawn_timer > 90:
+        monsters.append(spawn_monster())
+        spawn_timer = 0
+
+    # Move monsters toward player
+    for monster in monsters:
+        if monster.x < player.x:
+            monster.x += monster_speed
+        if monster.x > player.x:
+            monster.x -= monster_speed
+        if monster.y < player.y:
+            monster.y += monster_speed
+        if monster.y > player.y:
+            monster.y -= monster_speed
+
+    # Collision with gem
+    if player.colliderect(gem):
+        score += 1
+        gem.x = random.randint(0, WIDTH-20)
+        gem.y = random.randint(0, HEIGHT-20)
+
+    # Collision with monsters
+    for monster in monsters:
+        if player.colliderect(monster):
+            print("Game Over! Final Score:", score)
+            pygame.quit()
+            sys.exit()
+
+    # Draw everything
+    screen.fill((30, 30, 40))
+
+    pygame.draw.rect(screen, (0, 255, 0), player)  # Player
+    pygame.draw.rect(screen, (0, 200, 255), gem)   # Gem
+
+    for monster in monsters:
+        pygame.draw.rect(screen, (255, 0, 0), monster)
+
+    score_text = font.render(f"Score: {score}", True, (255, 255, 255))
+    screen.blit(score_text, (10, 10))
+
+    pygame.display.flip()
+
+pygame.quit()
+sys.exit()
