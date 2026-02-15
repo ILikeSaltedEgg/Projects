@@ -4,21 +4,17 @@ import sys
 
 pygame.init()
 
-# Screen
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Monster Escape")
 
 clock = pygame.time.Clock()
 
-# Player
 player = pygame.Rect(400, 300, 40, 40)
 player_speed = 5
 
-# Gem
 gem = pygame.Rect(random.randint(0, WIDTH-20), random.randint(0, HEIGHT-20), 20, 20)
 
-# Monsters
 monsters = []
 monster_speed = 2
 
