@@ -83,7 +83,7 @@ while running:
 
     screen.fill((30, 30, 40))
 
-    pygame.draw.rect(screen, (0, 255, 0), player)  # Player
+    pygame.draw.rect(screen, (0, 255, 0), player)  
     pygame.draw.rect(screen, (0, 200, 255), gem)   # Gem
 
     for monster in monsters:
