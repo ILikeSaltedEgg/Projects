@@ -74,7 +74,6 @@ export default function NoteCraft() {
 
   const active = notes.find(n => n.id === activeId);
 
-  // Auto-save with debounce + snapshot
   const scheduleSnapshot = useCallback((updatedNotes) => {
     setSaveStatus("saving");
     clearTimeout(saveTimer.current);
