@@ -74,7 +74,7 @@ export default function NoteCraft() {
 
   const active = notes.find(n => n.id === activeId);
 
-  const scheduleSnapshot = useCallback((updatedNotes) => {
+  co useCallback((updatedNotes) => {
     setSaveStatus("saving");
     clearTimeout(saveTimer.current);
     saveTimer.current = setTimeout(() => {
