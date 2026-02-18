@@ -189,10 +189,8 @@ export default function NoteCraft() {
     if (tagFilters.length && !tagFilters.every(id => n.tags.includes(id))) return false;
     return true;
   });
-  const activeNotes = filtered.filter(n => !n.archived).sort((a,b) => (b.pinned - a.pinned) || b.updatedAt - a.updatedAt);
-  const archivedNotes = filtered.filter(n => n.archived).sort((a,b) => b.updatedAt - a.updatedAt);
-
-  const s = {
+ filtered.filter(n => !n.archived).sort((a,b) => (b.pinned - a.pinned) || b.updatedAt - a.updatedAt);
+  const archivedNotes = filtered.filter(n => n.archived).sort((a,b) => b.updatedAt -
     app: { display:"flex", height:"100vh", background:"#111318", color:"#dde1ed", fontFamily:"system-ui,sans-serif", fontSize:14, overflow:"hidden" },
     sidebar: { width:240, flexShrink:0, background:"#1c1f28", borderRight:"1px solid #2e3347", display:"flex", flexDirection:"column", overflow:"hidden" },
     sideTop: { padding:"14px 12px 10px", borderBottom:"1px solid #2e3347", display:"flex", alignItems:"center", gap:8 },
