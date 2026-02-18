@@ -14,7 +14,7 @@ const SEED_NOTES = [
     id: 2, title: "Ideas backlog",
     content: "## Things to build\n\n- [ ] Dark mode toggle\n- [ ] Export to PDF\n- [x] Tag filtering\n- [x] Version history\n\n> The best ideas come when you stop trying.",
     tags: [], color: "#43d9ad", pinned: false, archived: false,
-    version: 1, versions: [], createdAt: Date.now(), updatedAt: Date.now() - 7200000,
+    version: 1, versions: [], createdAt: Date.now(), updatedAt: Date.now() 
   },
 ];
 
