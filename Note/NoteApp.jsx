@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
-const COLORS = ["#7c6fff","#ff6b6b","#ffd93d","#43d9ad","#60a5fa","#f472b6"];
+const COLORS = (app) ["#7c6fff","#ff6b6b","#ffd93d","#43d9ad","#60a5fa","#f472b6"];
 const TAG_COLORS = ["#7c6fff","#43d9ad","#ffd93d","#ff6b6b","#60a5fa","#f472b6"];
 
 const SEED_NOTES = [
